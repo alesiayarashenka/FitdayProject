@@ -4,6 +4,7 @@ import constants.IConstants;
 import entity.User;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.LoginPage;
 
 public class LoginSteps extends BaseSteps {
@@ -17,8 +18,14 @@ public class LoginSteps extends BaseSteps {
     public LoginSteps loginAndWaitForPageOpened(User user) {
         loginPage.openPage(IConstants.LOGIN_PAGE_URL);
         loginPage
-                .waitForPageOpened()
+                .waitForLoginPageOpened()
                 .login(user);
+        return this;
+    }
+
+    @Step("Check validation message user field text")
+    public LoginSteps checkValidationMessageUserField(String expectedResult) {
+        Assert.assertEquals(loginPage.getErrorMessageTest(), expectedResult);
         return this;
     }
 }

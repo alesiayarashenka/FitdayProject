@@ -17,14 +17,29 @@ public class Input {
         this.label = label;
     }
 
+    /**
+     * This is texting value in the field
+     *
+     * @return
+     */
     public void writeTextToInput(String text) {
         driver.findElement(By.xpath(String.format(inputLocator, label))).sendKeys(text);
     }
 
+    /**
+     * This is texting message in the item
+     *
+     * @return
+     */
     public void writeTextToTextarea(String text) {
         driver.findElement(By.xpath(String.format(TEXTAREA_XPATH, label))).sendKeys(text);
     }
 
+    /**
+     * This is texting value in the dropdown field
+     *
+     * @return
+     */
     public void writeTextInDropdownField(String text) {
         driver.findElement(By.xpath(String.format(INPUT_XPATH_ACCOUNT, label))).sendKeys(text);
     }

@@ -2,6 +2,7 @@ package tests;
 
 public interface ITestConstants {
 
-    String username = "alesia.yarashenka";
-    String password = "$KabBd24GAJjJ$$";
+    String INCORRECT_DATA_IN_FIELDS = "User name or password do not match";
+    String UNSUBSCRIBE_USER_MESSAGE = "This folder is currently empty.";
+
 }

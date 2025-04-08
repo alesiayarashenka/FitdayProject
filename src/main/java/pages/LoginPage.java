@@ -1,17 +1,13 @@
 package pages;
 
-import elements.Button;
 import elements.Input;
 import entity.User;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.Color;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import waiters.Waiter;
 
-import java.time.Duration;
 
 @Log4j2
 public class LoginPage extends BasePage {
@@ -32,10 +28,9 @@ public class LoginPage extends BasePage {
      * @return
      */
     public ForumsPage login(User user) {
-        waiter.waitForPageLoaded();
         new Input(driver, "username").writeTextToInput(user.getUsername());
         new Input(driver, "password").writeTextToInput(user.getPassword());
-        new Button(driver).clickButton(driver.findElement(LOGIN_BUTTON));
+        waiter.checkEnabledButtonAndClick(driver.findElement(LOGIN_BUTTON), driver);
         log.info("User is registered with username: {}", user.getUsername());
         return new ForumsPage(driver);
     }
@@ -51,14 +46,23 @@ public class LoginPage extends BasePage {
         return message;
     }
 
-    public LoginPage waitForPageOpened() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
+    /**
+     * This is waiting for open login page
+     *
+     * @return
+     */
+    public LoginPage waitForLoginPageOpened() {
+        waiter.waitForPageOpened(driver.findElement(LOGIN_BUTTON), driver);
         return this;
     }
 
+    /**
+     * This is checking field color
+     *
+     * @return
+     */
     public String getFieldColor(String element) {
-        String titleColor = driver.findElement(By.cssSelector(element)).getCssValue("border-color");
+        String titleColor = driver.findElement(By.cssSelector("#" + element)).getCssValue("border-color");
         Color color = Color.fromString(titleColor);
         return color.asHex();
     }
