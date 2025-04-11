@@ -11,12 +11,11 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pages.HeaderPage;
-import pages.LoginPage;
-import pages.ForumsPage;
-import pages.SubscribePage;
+import pages.*;
+import steps.HeaderSteps;
 import steps.LoginSteps;
 import steps.SubscribeSteps;
+import steps.ThreadSteps;
 import utils.PropertyReader;
 
 import java.util.HashMap;
@@ -33,6 +32,9 @@ public class BaseTest implements IConstants {
     protected HeaderPage headerPage;
     protected SubscribePage subscribePage;
     protected SubscribeSteps subscribeSteps;
+    protected ThreadSteps threadSteps;
+    protected ThreadPage threadPage;
+    protected HeaderSteps headerSteps;
     public static String USER = PropertyReader.getProperty("username");
     public static String PASSWORD = PropertyReader.getProperty("password");
 
@@ -63,6 +65,9 @@ public class BaseTest implements IConstants {
         headerPage = new HeaderPage(driver);
         subscribePage = new SubscribePage(driver);
         subscribeSteps = new SubscribeSteps(driver);
+        threadSteps = new ThreadSteps(driver);
+        threadPage = new ThreadPage(driver);
+        headerSteps = new HeaderSteps(driver);
     }
 
     /**

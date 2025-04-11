@@ -4,12 +4,11 @@ import elements.Dropdown;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import waiters.Waiter;
+import org.testng.Assert;
 
-public class HeaderPage extends BasePage{
+public class HeaderPage extends BasePage {
     private static final String WELCOME_MEMBER_XPATH = "//div[contains(@class,'member-form')]/*[contains(text(),'Welcome, ')]/*[contains(text(),'%s')]";
     private static final String PAGE_ITEM_XPATH = "//h1//*[contains(text(),'%s')]";
-    Waiter waiter = new Waiter();
 
     public HeaderPage(WebDriver driver) {
         super(driver);
@@ -20,30 +19,52 @@ public class HeaderPage extends BasePage{
      *
      * @return
      */
-    public boolean pageIsOpened(String option) {
+    public boolean isPageOpened(String option) {
         WebElement pageItem = driver.findElement(By.xpath(String.format(PAGE_ITEM_XPATH, option)));
-        waiter.waitForPageOpened(pageItem, driver);
+        waiter.waitForPageOpened((By.xpath(String.format(PAGE_ITEM_XPATH, option))), driver);
         return pageItem.isDisplayed();
     }
 
     /**
-     * This is checking visible user's name of the forum page
+     * This is checking visible user's name on the forum page after login
      *
      * @return
      */
-    public boolean forumsIsOpened(String user) {
+    public boolean isForumsOpened(String user) {
         WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
-        waiter.waitForPageOpened(welcomeMessage, driver);
+        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
         return welcomeMessage.isDisplayed();
     }
 
     /**
-     * This is select option in list of accessible user's pages
+     * This is select option in list of accessible user's pages in header to direct to subscription page
      *
      * @return
      */
     public void selectUsersPage(String option, String pageName) {
         new Dropdown(driver).userSelectOption(option);
-        pageIsOpened(pageName);
+        isPageOpened(pageName);
+    }
+
+    /**
+     * This is select option in list of accessible user's pages in header to logout
+     *
+     * @return
+     */
+    public void selectLogout(String option) {
+        new Dropdown(driver).userSelectOption(option);
+    }
+
+
+    /**
+     * This is select option to logout in pop-ap form
+     *
+     * @return
+     */
+    public LoginPage agreementToLogoutInForm(String question) {
+        String alertText = driver.switchTo().alert().getText().trim();
+        Assert.assertEquals(alertText, question);
+        driver.switchTo().alert().accept();
+        return new LoginPage(driver);
     }
 }

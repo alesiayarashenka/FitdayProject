@@ -28,4 +28,10 @@ public class LoginSteps extends BaseSteps {
         Assert.assertEquals(loginPage.getErrorMessageTest(), expectedResult);
         return this;
     }
+
+    @Step("Check password and username field color")
+    public String checkPasswordAndUsernameFieldColorAtLogin(String element) {
+        String color = loginPage.getFieldColor(element);
+        return color;
+    }
 }

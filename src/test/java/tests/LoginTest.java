@@ -1,17 +1,16 @@
 package tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class LoginTest extends Preconditions implements ITestConstants{
+public class LoginTest extends Preconditions implements ITestConstants {
     SoftAssert softAssert = new SoftAssert();
 
     @Test(description = "Login user with empty username field, check changed field color for username form")
     public void loginWithEmptyUserNameFieldTest() {
         loginSteps.loginAndWaitForPageOpened(userWithEmptyUserName);
-        String colorUsernameField = loginPage.getFieldColor("username");
-        String colorPasswordField = loginPage.getFieldColor("password");
+        String colorUsernameField = loginSteps.checkPasswordAndUsernameFieldColorAtLogin("username");
+        String colorPasswordField = loginSteps.checkPasswordAndUsernameFieldColorAtLogin("password");
         softAssert.assertEquals(colorUsernameField, "#ff0000");
         softAssert.assertEquals(colorPasswordField, "#ced4da");
         softAssert.assertNotEquals(colorUsernameField, colorPasswordField);
@@ -21,8 +20,8 @@ public class LoginTest extends Preconditions implements ITestConstants{
     @Test(description = "Login user with empty password field, check changed field color for password form")
     public void loginWithEmptyPasswordTest() {
         loginSteps.loginAndWaitForPageOpened(userWithEmptyPassword);
-        String colorUsernameField = loginPage.getFieldColor("username");
-        String colorPasswordField = loginPage.getFieldColor("password");
+        String colorUsernameField = loginSteps.checkPasswordAndUsernameFieldColorAtLogin("username");
+        String colorPasswordField = loginSteps.checkPasswordAndUsernameFieldColorAtLogin("password");
         softAssert.assertEquals(colorUsernameField, "#ced4da");
         softAssert.assertEquals(colorPasswordField, "#ff0000");
         softAssert.assertNotEquals(colorUsernameField, colorPasswordField);
@@ -38,6 +37,6 @@ public class LoginTest extends Preconditions implements ITestConstants{
     @Test(description = "Login user with correct username and password")
     public void successfulLoginTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
-        headerPage.forumsIsOpened(USER);
+        headerSteps.checkWelcomeMessageInHeader(USER);
     }
 }

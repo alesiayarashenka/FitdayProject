@@ -1,13 +1,12 @@
 package pages;
 
+import elements.Button;
 import elements.Input;
 import entity.User;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.Color;
-import waiters.Waiter;
-
 
 @Log4j2
 public class LoginPage extends BasePage {
@@ -16,7 +15,6 @@ public class LoginPage extends BasePage {
     public static final By FORGOT_PASSWORD_BUTTON = By.xpath("//*[@href='/auth/requestPassword']");
     public static final By CREATE_ACCOUNT_BUTTON = By.xpath("//button[@id='SubmitCreate']");
     public static final By ERROR_MESSAGE = By.xpath("//div[@role='alert']");
-    Waiter waiter = new Waiter();
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -30,20 +28,25 @@ public class LoginPage extends BasePage {
     public ForumsPage login(User user) {
         new Input(driver, "username").writeTextToInput(user.getUsername());
         new Input(driver, "password").writeTextToInput(user.getPassword());
-        waiter.checkEnabledButtonAndClick(driver.findElement(LOGIN_BUTTON), driver);
+        waiter.waitForButtonClickable((LOGIN_BUTTON), driver);
+        new Button(driver).clickButton(driver.findElement(LOGIN_BUTTON));
         log.info("User is registered with username: {}", user.getUsername());
         return new ForumsPage(driver);
     }
 
     /**
-     * This is checking text of error messages
+     * This is checking text of error messages by login
      *
      * @return
      */
     public String getErrorMessageTest() {
-        String message = driver.findElement(ERROR_MESSAGE).getText();
-        log.info("User was not logged: {}", message);
-        return message;
+        try {
+            log.info("Getting error message text.");
+            return driver.findElement(ERROR_MESSAGE).getText();
+        } catch (Exception e) {
+            log.error("Failed to get error message text.", e);
+            return "";
+        }
     }
 
     /**
@@ -52,7 +55,7 @@ public class LoginPage extends BasePage {
      * @return
      */
     public LoginPage waitForLoginPageOpened() {
-        waiter.waitForPageOpened(driver.findElement(LOGIN_BUTTON), driver);
+        waiter.waitForPageOpened((LOGIN_BUTTON), driver);
         return this;
     }
 
@@ -63,7 +66,6 @@ public class LoginPage extends BasePage {
      */
     public String getFieldColor(String element) {
         String titleColor = driver.findElement(By.cssSelector("#" + element)).getCssValue("border-color");
-        Color color = Color.fromString(titleColor);
-        return color.asHex();
+        return Color.fromString(titleColor).asHex();
     }
 }
