@@ -1,12 +1,26 @@
 package pages;
 
-import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
-@Log4j2
 public class ForumsPage extends HeaderPage {
+    private static final String TAB_FORUM_XPATH = "//div[@class='trow tmenu text-center']/child::div/a[contains(text(),'%s')]";
 
     public ForumsPage(WebDriver driver) {
         super(driver);
+    }
+
+    /**
+     * This is checking forum tabs are displayed
+     *
+     * @return
+     */
+    public void isForumTabsDisplayed(String... tabNames) {
+        for(int i = 0; i < tabNames.length; i++){
+            WebElement tab = driver.findElement(By.xpath(String.format(TAB_FORUM_XPATH, tabNames[i])));
+            Assert.assertTrue(tab.isDisplayed());
+        }
     }
 }

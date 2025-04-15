@@ -22,13 +22,13 @@ public class SubscribeSteps extends BaseSteps {
     @Step("Select subscribe option and direct to subscription page")
     public SubscribeSteps directToSubscriptionPage(String user) {
         headerPage.isForumsOpened(user);
-        headerPage.selectUsersPage("Subscribed Threads", "Subscriptions");
+        headerPage.selectUsersSubscriptionPage("Subscribed Threads", "Subscriptions");
         return this;
     }
 
     @Step("Check unsubscribe message in the field")
     public SubscribeSteps checkSubscribeMessageInField(String expectedResult) {
-        Assert.assertEquals(subscribePage.getNotExistedUserSubscription(), expectedResult);
+        Assert.assertEquals(subscribePage.getNotExistedUserSubscriptionText(), expectedResult);
         return this;
     }
 
@@ -36,13 +36,13 @@ public class SubscribeSteps extends BaseSteps {
     public SubscribeSteps addSubscriptionToThread() {
         threadPage.subscribeToThread();
         subscribePage.subscribeToThreadOnSubscribePage();
-        subscribePage.getMessageSubscription();
+        subscribePage.getMessageSubscriptionText();
         return this;
     }
 
     @Step("Check subscription message")
     public SubscribeSteps checkSubscriptionMessage(String expectedResult) {
-        Assert.assertEquals(subscribePage.getMessageSubscription(), expectedResult);
+        Assert.assertEquals(subscribePage.getMessageSubscriptionText(), expectedResult);
         return this;
     }
 

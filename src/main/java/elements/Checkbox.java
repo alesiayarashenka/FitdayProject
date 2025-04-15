@@ -1,5 +1,6 @@
 package elements;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,8 +16,13 @@ public class Checkbox {
      *
      * @return
      */
-    public void clickCheckbox(WebElement webElement) {
-        webElement.click();
+    public void setCheckboxValue(By element, boolean selected) {
+        WebElement checkbox = driver.findElement(element);
+        if (selected && !checkbox.isSelected()) {
+            checkbox.click();
+        } else if (!selected && checkbox.isSelected()) {
+            checkbox.click();
+        }
     }
 
     /**
@@ -24,7 +30,7 @@ public class Checkbox {
      *
      * @return
      */
-    public boolean checkboxIsSelected(WebElement webElement) {
+    public boolean isCheckBoxChecked(WebElement webElement) {
         return webElement.isSelected();
     }
 }

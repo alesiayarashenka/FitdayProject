@@ -12,10 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
-import steps.HeaderSteps;
-import steps.LoginSteps;
-import steps.SubscribeSteps;
-import steps.ThreadSteps;
+import steps.*;
 import utils.PropertyReader;
 
 import java.util.HashMap;
@@ -35,6 +32,17 @@ public class BaseTest implements IConstants {
     protected ThreadSteps threadSteps;
     protected ThreadPage threadPage;
     protected HeaderSteps headerSteps;
+    protected ControlPanelPage controlPanelPage;
+    protected UserSettingsSteps userSettingsSteps;
+    protected ForumSteps forumSteps;
+    protected SearchForumSteps searchForumSteps;
+    protected SearchForumPage searchForumPage;
+    protected SearchResultsPage searchResultsPage;
+    protected SearchResultSteps searchResultSteps;
+    protected UserInformationPage userInformationPage;
+    protected UserInformationSteps userInformationSteps;
+    protected SetPostSteps setPostSteps;
+    protected SetPostPage setPostPage;
     public static String USER = PropertyReader.getProperty("username");
     public static String PASSWORD = PropertyReader.getProperty("password");
 
@@ -68,6 +76,17 @@ public class BaseTest implements IConstants {
         threadSteps = new ThreadSteps(driver);
         threadPage = new ThreadPage(driver);
         headerSteps = new HeaderSteps(driver);
+        controlPanelPage = new ControlPanelPage(driver);
+        userSettingsSteps = new UserSettingsSteps(driver);
+        forumSteps = new ForumSteps(driver);
+        searchForumSteps = new SearchForumSteps(driver);
+        searchForumPage = new SearchForumPage(driver);
+        searchResultsPage = new SearchResultsPage(driver);
+        searchResultSteps = new SearchResultSteps(driver);
+        userInformationPage = new UserInformationPage(driver);
+        userInformationSteps = new UserInformationSteps(driver);
+        setPostPage = new SetPostPage(driver);
+        setPostSteps = new SetPostSteps(driver);
     }
 
     /**

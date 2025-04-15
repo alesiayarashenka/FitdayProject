@@ -8,6 +8,6 @@ public class LogoutTest extends Preconditions implements ITestConstants {
     public void logoutTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(USER)
-                   .directToSubscriptionPage(LOGOUT_QUESTION_IN_FORM);
+                .logoutFromApp(LOGOUT_QUESTION_IN_FORM);
     }
 }

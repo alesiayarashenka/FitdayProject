@@ -11,7 +11,7 @@ public class ThreadPage extends HeaderPage {
     public static final By SUBSCRIBE_BUTTON = By.xpath("//div[@class='flexitem']//a[contains(text(),'Subscribe')]");
     public static final By UNSUBSCRIBE_BUTTON = By.xpath("//div[@class='flexitem']//a[contains(text(),'Subscribed')]");
     private static final String DELETE_SUBSCRIPTION_MESSAGE_IN_FORM = "//p/child::strong";
-    private static final String THREAD_XPATH = "//*[contains(text(),'games')]";
+    private static final String THREAD_XPATH = "//*[contains(text(),'%s')]";
 
     public ThreadPage(WebDriver driver) {
         super(driver);
@@ -23,7 +23,7 @@ public class ThreadPage extends HeaderPage {
      * @return
      */
     public ThreadPage directToForum(String forumName) {
-        driver.findElement(By.xpath(String.format(FORUM_XPATH, forumName))).click();
+        new Button(driver).clickButton(driver.findElement(By.xpath(String.format(FORUM_XPATH, forumName))));
         return this;
     }
 
@@ -33,7 +33,7 @@ public class ThreadPage extends HeaderPage {
      * @return
      */
     public ThreadPage directToThread(String threadName) {
-        driver.findElement(By.xpath(String.format(THREAD_XPATH, threadName))).click();
+        new Button(driver).clickButton(driver.findElement(By.xpath(String.format(THREAD_XPATH, threadName))));
         return this;
     }
 

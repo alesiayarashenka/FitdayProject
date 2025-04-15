@@ -19,12 +19,21 @@ public class Dropdown {
     }
 
     /**
-     * This chooses option in header dropdown
+     * This opens header user dropdown
      *
      * @return
      */
-    public void userSelectOption(String option) {
+    public void userOpenHeaderDropdown() {
         driver.findElement(By.xpath(String.format(USER_DROPDOWN_XPATH))).click();
+    }
+
+    /**
+     * This chooses subscription option in header dropdown
+     *
+     * @return
+     */
+    public void userSelectSubscrOption(String option) {
+        userOpenHeaderDropdown();
         driver.findElement(By.xpath(String.format(USER_DROPDOWN_OPTION_XPATH, option))).click();
     }
 

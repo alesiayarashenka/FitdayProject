@@ -10,7 +10,7 @@ public class SubscribeTest extends BaseTest implements ITestConstants {
     public void checkUserSubscriptionTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         subscribeSteps.directToSubscriptionPage(USER)
-                      .checkSubscribeMessageInField(UNSUBSCRIBE_USER_MESSAGE);
+                .checkSubscribeMessageInField(UNSUBSCRIBE_USER_MESSAGE);
     }
 
     @Test(description = "Login user, subscribe to forum, delete subscription in forum")
@@ -18,23 +18,23 @@ public class SubscribeTest extends BaseTest implements ITestConstants {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         threadSteps.chooseForumToSubscribe(FORUM_WEIGHT_LOSS_PAGE_NAME, SUBFORUM_DIETS_PAGE_NAME);
         subscribeSteps.addSubscriptionToThread()
-                      .checkSubscriptionMessage(SUCCESSFUL_ADD_SUBSCRIPTION_FORUM_MESSAGE);
+                .checkSubscriptionMessage(SUCCESSFUL_ADD_SUBSCRIPTION_FORUM_MESSAGE);
         threadSteps.deleteSubscriptionToThread(SUBFORUM_DIETS_PAGE_NAME)
-                   .checkDeleteSubscriptionMessage(SUCCESSFUL_DELETE_SUBSCRIPTION_MESSAGE);
+                .checkDeleteSubscriptionMessage(SUCCESSFUL_DELETE_SUBSCRIPTION_MESSAGE);
     }
 
     @Test(description = "Login user, subscribe to thread, delete subscription in subscription page")
     public void subscribeAndDeleteSubscriptionInSubscriptionPageTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         threadSteps.chooseForumToSubscribe(FORUM_WEIGHT_LOSS_PAGE_NAME, SUBFORUM_DIETS_PAGE_NAME)
-                   .chooseThreadToSubscribe(SUBFORUM_DIETS_PAGE_NAME, THREAD_PAGE_NAME);
+                .chooseThreadToSubscribe(SUBFORUM_DIETS_PAGE_NAME, THREAD_PAGE_NAME);
         subscribeSteps.addSubscriptionToThread()
-                      .checkSubscriptionMessage(SUCCESSFUL_ADD_SUBSCRIPTION_THREAD_MESSAGE)
-                      .openSubscribePage(SUBSCRIPTION_PAGE_NAME)
-                      .openAddedSubscription("folderid")
-                      .checkAddedSubscription("0", ADDED_THREAD_IN_SUBSCRIPTION_FOLDER)
-                      .choseCheckboxSubscription()
-                      .deleteSubscriptionFolder("what", "delete")
-                      .checkSubscribeMessageInField(UNSUBSCRIBE_USER_MESSAGE);
+                .checkSubscriptionMessage(SUCCESSFUL_ADD_SUBSCRIPTION_THREAD_MESSAGE)
+                .openSubscribePage(SUBSCRIPTION_PAGE_NAME)
+                .openAddedSubscription("folderid")
+                .checkAddedSubscription("0", ADDED_THREAD_IN_SUBSCRIPTION_FOLDER)
+                .choseCheckboxSubscription()
+                .deleteSubscriptionFolder("what", "delete")
+                .checkSubscribeMessageInField(UNSUBSCRIBE_USER_MESSAGE);
     }
 }

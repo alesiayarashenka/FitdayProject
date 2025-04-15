@@ -60,6 +60,15 @@ public class LoginPage extends BasePage {
     }
 
     /**
+     * This is checking login button is displayed
+     *
+     * @return
+     */
+    public boolean isLoginButtonDisplayed() {
+        return driver.findElement(LOGIN_BUTTON).isDisplayed();
+    }
+
+    /**
      * This is checking field color
      *
      * @return

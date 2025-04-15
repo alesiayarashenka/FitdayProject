@@ -30,8 +30,7 @@ public class LoginSteps extends BaseSteps {
     }
 
     @Step("Check password and username field color")
-    public String checkPasswordAndUsernameFieldColorAtLogin(String element) {
-        String color = loginPage.getFieldColor(element);
-        return color;
+    public String getPasswordAndUsernameFieldColorAtLogin(String element) {
+        return loginPage.getFieldColor(element);
     }
 }

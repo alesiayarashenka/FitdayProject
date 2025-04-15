@@ -7,6 +7,8 @@ import org.testng.Assert;
 import pages.HeaderPage;
 import pages.ThreadPage;
 
+import java.util.List;
+
 public class ThreadSteps extends BaseSteps {
 
     private ThreadPage threadPage;
@@ -45,6 +47,13 @@ public class ThreadSteps extends BaseSteps {
         headerPage.isPageOpened(subForumName);
         threadPage.directToThread(threadName);
         headerPage.isPageOpened(threadName);
+        return this;
+    }
+
+    @Step("Move to header tab, checks options in dropdown")
+    public ThreadSteps checkOptionsInTabs(String tabName, List<String> forumNames) {
+        headerPage.moveToTabHeaderOption(tabName);
+        headerPage.checkOptionsNameInList(headerPage.getTitlesInTab(tabName), forumNames);
         return this;
     }
 }

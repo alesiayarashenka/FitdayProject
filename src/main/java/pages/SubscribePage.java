@@ -24,7 +24,7 @@ public class SubscribePage extends HeaderPage {
      *
      * @return
      */
-    public String getNotExistedUserSubscription() {
+    public String getNotExistedUserSubscriptionText() {
         try {
             log.info("Getting not existed subscription message text.");
             return driver.findElement(SUBSCRIPTION_ITEM_XPATH).getText();
@@ -50,7 +50,7 @@ public class SubscribePage extends HeaderPage {
      *
      * @return
      */
-    public String getMessageSubscription() {
+    public String getMessageSubscriptionText() {
         try {
             log.info("Getting successful subscription message text.");
             return driver.findElement(By.xpath(String.format(SUBSCRIPTION_MESSAGE_IN_FORM))).getText();
@@ -84,7 +84,7 @@ public class SubscribePage extends HeaderPage {
      * @return
      */
     public void selectCheckboxForDeleteSubscription() {
-        new Checkbox(driver).clickCheckbox(driver.findElement(CHECKBOX_SUBSCRIPTION));
+        new Checkbox(driver).setCheckboxValue(CHECKBOX_SUBSCRIPTION, true);
     }
 
     /**
@@ -93,7 +93,7 @@ public class SubscribePage extends HeaderPage {
      * @return
      */
     public boolean checkboxForDeleteSubscriptionIsSelected() {
-        return new Checkbox(driver).checkboxIsSelected(driver.findElement(CHECKBOX_SUBSCRIPTION));
+        return new Checkbox(driver).isCheckBoxChecked(driver.findElement(CHECKBOX_SUBSCRIPTION));
     }
 
     /**
@@ -103,6 +103,7 @@ public class SubscribePage extends HeaderPage {
      */
     public SubscribePage deleteChooseFolderFromSubscription(String dropdownName, String option) {
         new Dropdown(driver).selectOptionInDropdown(dropdownName, option);
+        waiter.waitForButtonClickable((GO_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(GO_BUTTON));
         return this;
     }
