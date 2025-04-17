@@ -56,6 +56,7 @@ public class LoginPage extends BasePage {
      */
     public LoginPage waitForLoginPageOpened() {
         waiter.waitForPageOpened((LOGIN_BUTTON), driver);
+        log.info("Login page is opened");
         return this;
     }
 

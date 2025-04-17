@@ -36,6 +36,7 @@ public class ControlPanelPage extends BasePage {
      */
     public void selectAvatarCheckbox(String checkboxName) {
         new Checkbox(driver).setCheckboxValue((By.xpath(String.format(CHECKBOX_AVATAR_XPATH, checkboxName))),true);
+        log.info("Checkbox {}has been selected", checkboxName);
     }
 
     /**

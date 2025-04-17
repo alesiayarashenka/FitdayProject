@@ -33,12 +33,12 @@ public class SearchForumSteps extends BaseSteps {
     @Step("Set value in search fields")
     public void fillSearchForumForm(String tagName, String titleName) {
         searchForumPage.writeTagValueInField(tagName);
-        searchForumPage.isDropdownSearchDisplayed();
+        searchForumPage.waitDropdownSearchDisplayed();
         checkOptionsInDropdownList(tagName);
         searchForumPage.chooseValueInDropdownList(titleName);
-        searchForumPage.writeKeywordValueInField(tagName);
-        searchForumPage.selectOptionInDropdown("titleonly", "1");
-        searchForumPage.selectOptionInDropdown("sortby", "title");
+        searchForumPage.writeKeywordValueInField(tagName)
+                .selectOptionInDropdown("titleonly", "1")
+                .selectOptionInDropdown("sortby", "title");
         searchForumPage.setReplyLimit("1");
         searchForumPage.submitSearchForm();
     }

@@ -18,9 +18,8 @@ public class ForumsPage extends HeaderPage {
      * @return
      */
     public void isForumTabsDisplayed(String... tabNames) {
-        for(int i = 0; i < tabNames.length; i++){
-            WebElement tab = driver.findElement(By.xpath(String.format(TAB_FORUM_XPATH, tabNames[i])));
-            Assert.assertTrue(tab.isDisplayed());
+       for(String tabName : tabNames){
+           Assert.assertTrue(driver.findElement(By.xpath(String.format(TAB_FORUM_XPATH, tabName))).isDisplayed());
         }
     }
 }

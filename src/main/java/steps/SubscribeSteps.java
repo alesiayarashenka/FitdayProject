@@ -36,7 +36,7 @@ public class SubscribeSteps extends BaseSteps {
     public SubscribeSteps addSubscriptionToThread() {
         threadPage.subscribeToThread();
         subscribePage.subscribeToThreadOnSubscribePage();
-        subscribePage.getMessageSubscriptionText();
+//        subscribePage.getMessageSubscriptionText();
         return this;
     }
 

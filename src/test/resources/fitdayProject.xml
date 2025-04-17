@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="FitdayProject Test Suite" parallel="tests" thread-count="2">
+    <test name="ForumTests">
+        <classes>
+            <class name="tests.ForumTest" />
+        </classes>
+    </test>
+    <test name="LoginTests">
+        <classes>
+            <class name="tests.LoginTest" />
+        </classes>
+    </test>
+    <test name="LogoutTests">
+        <classes>
+            <class name="tests.LogoutTest" />
+        </classes>
+    </test>
+    <test name="PostTests">
+        <classes>
+            <class name="tests.PostTest" />
+        </classes>
+    </test>
+    <test name="SearchTests">
+        <classes>
+            <class name="tests.SearchTest" />
+        </classes>
+    </test>
+    <test name="SubscribeTests">
+        <classes>
+            <class name="tests.SubscribeTest" />
+        </classes>
+    </test>
+    <test name="UserSettingsTests">
+        <classes>
+            <class name="tests.UserSettingsTest" />
+        </classes>
+    </test>
+</suite>

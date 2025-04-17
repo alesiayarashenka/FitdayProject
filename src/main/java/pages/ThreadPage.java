@@ -24,6 +24,7 @@ public class ThreadPage extends HeaderPage {
      */
     public ThreadPage directToForum(String forumName) {
         new Button(driver).clickButton(driver.findElement(By.xpath(String.format(FORUM_XPATH, forumName))));
+        log.info("Direct to forum {}", forumName);
         return this;
     }
 
@@ -34,6 +35,7 @@ public class ThreadPage extends HeaderPage {
      */
     public ThreadPage directToThread(String threadName) {
         new Button(driver).clickButton(driver.findElement(By.xpath(String.format(THREAD_XPATH, threadName))));
+        log.info("Direct to forum {}", threadName);
         return this;
     }
 
@@ -45,6 +47,7 @@ public class ThreadPage extends HeaderPage {
     public SubscribePage subscribeToThread() {
         waiter.waitForButtonClickable((SUBSCRIBE_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(SUBSCRIBE_BUTTON));
+        log.info("Subscribe to thread in forum page");
         return new SubscribePage(driver);
     }
 
@@ -56,6 +59,7 @@ public class ThreadPage extends HeaderPage {
     public ThreadPage unsubscribeFromThread() {
         waiter.waitForButtonClickable((UNSUBSCRIBE_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(UNSUBSCRIBE_BUTTON));
+        log.info("Unsubscribe from thread in forum page");
         return this;
     }
 
@@ -67,6 +71,7 @@ public class ThreadPage extends HeaderPage {
     public String getMessageDeleteSubscription() {
         try {
             log.info("Getting deleted subscription message text.");
+            waiter.waitForPageOpened((By.xpath(String.format(DELETE_SUBSCRIPTION_MESSAGE_IN_FORM))), driver);
             return driver.findElement(By.xpath(String.format(DELETE_SUBSCRIPTION_MESSAGE_IN_FORM))).getText();
         } catch (Exception e) {
             log.error("Failed to get deleted subscription message text.", e);

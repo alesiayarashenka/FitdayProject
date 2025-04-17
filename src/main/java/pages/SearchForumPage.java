@@ -2,6 +2,7 @@ package pages;
 
 import elements.Button;
 import elements.Input;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 public class SearchForumPage extends BasePage {
     private static final By VALUE_LIST_DROPDOWN_SEARCH = By.xpath("//div[@id='tag_add_menu']");
     private static final String VALUE_DROPDOWN_XPATH = "//*[contains(text(),' %s')]";
@@ -28,6 +30,7 @@ public class SearchForumPage extends BasePage {
      */
     public SearchForumPage writeTagValueInField(String text) {
         new Input(driver, "Tag:").writeTextToSearchField("tag", text);
+        log.info("In tag field has been written {}", text);
         return this;
     }
 
@@ -38,6 +41,7 @@ public class SearchForumPage extends BasePage {
      */
     public SearchForumPage writeKeywordValueInField(String text) {
         new Input(driver, "Keyword(s):").writeTextToSearchField("query", text);
+        log.info("In keyword field has been written {}", text);
         return this;
     }
 
@@ -46,8 +50,9 @@ public class SearchForumPage extends BasePage {
      *
      * @return
      */
-    public void isDropdownSearchDisplayed() {
+    public void waitDropdownSearchDisplayed() {
         waiter.waitForPageOpened((VALUE_LIST_DROPDOWN_SEARCH), driver);
+        log.info("Search dropdown values are displayed");
     }
 
     /**
@@ -79,9 +84,11 @@ public class SearchForumPage extends BasePage {
      *
      * @return
      */
-    public void selectOptionInDropdown(String option, String value) {
+    public SearchForumPage selectOptionInDropdown(String option, String value) {
         Select dropdown = new Select(driver.findElement(By.xpath(String.format(DROPDOWN_XPATH, option))));
         dropdown.selectByValue(value);
+        log.info("Dropdown value {} has been selected", value);
+        return this;
     }
 
     /**
@@ -93,6 +100,7 @@ public class SearchForumPage extends BasePage {
         waiter.waitForButtonClickable((SUBMIT_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(SUBMIT_BUTTON));
         waiter.waitForPageLoaded();
+        log.info("Search form has been submitted");
         return new SearchResultsPage(driver);
     }
 
@@ -104,6 +112,7 @@ public class SearchForumPage extends BasePage {
     public SearchForumPage setReplyLimit(String valueAmount) {
         driver.findElement(REPLY_LIMIT_FIELD).clear();
         driver.findElement(REPLY_LIMIT_FIELD).sendKeys(valueAmount);
+        log.info("Replay limit in {} has been selected", valueAmount);
         return this;
     }
 }

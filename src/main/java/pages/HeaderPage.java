@@ -31,8 +31,9 @@ public class HeaderPage extends BasePage {
      * @return
      */
     public boolean isPageOpened(String option) {
-        WebElement pageItem = driver.findElement(By.xpath(String.format(PAGE_ITEM_XPATH, option)));
         waiter.waitForPageOpened((By.xpath(String.format(PAGE_ITEM_XPATH, option))), driver);
+        WebElement pageItem = driver.findElement(By.xpath(String.format(PAGE_ITEM_XPATH, option)));
+        log.info("Page {} is opened", option);
         return pageItem.isDisplayed();
     }
 
@@ -42,8 +43,9 @@ public class HeaderPage extends BasePage {
      * @return
      */
     public boolean isForumsOpened(String user) {
-        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
         waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
+        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
+        log.info("Welcome message with name {} is displayed", user);
         return welcomeMessage.isDisplayed();
     }
 
@@ -54,6 +56,7 @@ public class HeaderPage extends BasePage {
      */
     public void selectUsersSubscriptionPage(String option, String pageName) {
         new Dropdown(driver).userSelectSubscrOption(option);
+        log.info("Page {} is opened", pageName);
         isPageOpened(pageName);
     }
 
@@ -95,6 +98,7 @@ public class HeaderPage extends BasePage {
     public HeaderPage moveToTabHeaderOption(String tabName) {
         WebElement tab = driver.findElement(By.xpath(String.format(TAB_HEADER_XPATH, tabName)));
         action.moveToElement(tab).build().perform();
+        log.info("Tab {} is displayed", tabName);
         return this;
     }
 
@@ -130,9 +134,8 @@ public class HeaderPage extends BasePage {
      * @return
      */
     public void isTabsDisplayed(String... tabNames) {
-        for (int i = 0; i < tabNames.length; i++) {
-            WebElement tab = driver.findElement(By.xpath(String.format(TAB_HEADER_XPATH, tabNames[i])));
-            Assert.assertTrue(tab.isDisplayed());
+        for (String tabName : tabNames) {
+          Assert.assertTrue(driver.findElement(By.xpath(String.format(TAB_HEADER_XPATH, tabName))).isDisplayed());
         }
     }
 
@@ -143,6 +146,7 @@ public class HeaderPage extends BasePage {
      */
     public HeaderPage openHeaderUserDropdown() {
         new Dropdown(driver).userOpenHeaderDropdown();
+        log.info("Header dropdown is opened");
         return this;
     }
 

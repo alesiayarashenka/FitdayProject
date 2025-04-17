@@ -42,6 +42,7 @@ public class SubscribePage extends HeaderPage {
     public ThreadPage subscribeToThreadOnSubscribePage() {
         waiter.waitForButtonClickable((ADD_SUBSCRIPTION_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(ADD_SUBSCRIPTION_BUTTON));
+        log.info("Subscription to thread has been added");
         return new ThreadPage(driver);
     }
 
@@ -53,6 +54,7 @@ public class SubscribePage extends HeaderPage {
     public String getMessageSubscriptionText() {
         try {
             log.info("Getting successful subscription message text.");
+            waiter.waitForPageOpened((By.xpath(String.format(SUBSCRIPTION_MESSAGE_IN_FORM))), driver);
             return driver.findElement(By.xpath(String.format(SUBSCRIPTION_MESSAGE_IN_FORM))).getText();
         } catch (Exception e) {
             log.error("Failed to get successful subscription message text.", e);
@@ -67,6 +69,7 @@ public class SubscribePage extends HeaderPage {
      */
     public void checkAddedSubscriptionOption(String dropdownName) {
         new Dropdown(driver).clickAtDropdownField(dropdownName);
+        log.info("Subscription dropdown {} is opened", dropdownName);
     }
 
     /**
@@ -85,6 +88,7 @@ public class SubscribePage extends HeaderPage {
      */
     public void selectCheckboxForDeleteSubscription() {
         new Checkbox(driver).setCheckboxValue(CHECKBOX_SUBSCRIPTION, true);
+        log.info("Checkbox to delete subscription is selected");
     }
 
     /**
@@ -103,8 +107,10 @@ public class SubscribePage extends HeaderPage {
      */
     public SubscribePage deleteChooseFolderFromSubscription(String dropdownName, String option) {
         new Dropdown(driver).selectOptionInDropdown(dropdownName, option);
+        log.info("Option {} in dropdown {} is selected", option, dropdownName);
         waiter.waitForButtonClickable((GO_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(GO_BUTTON));
+        log.info("Subscription in folder has been removed");
         return this;
     }
 }

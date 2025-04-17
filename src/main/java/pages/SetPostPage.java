@@ -3,9 +3,11 @@ package pages;
 import elements.Button;
 import elements.Checkbox;
 import elements.Input;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+@Log4j2
 public class SetPostPage extends HeaderPage {
     public static final By NEW_THREAD_BUTTON = By.xpath("//div[@class='flexitem']//a[contains(text(),'New Thread')]");
     public static final By PREVIEW_POST_BUTTON = By.xpath("//div[@class='text-center smallfont']/child::input[@value='Preview Post']");
@@ -28,6 +30,7 @@ public class SetPostPage extends HeaderPage {
         waiter.waitForButtonClickable((NEW_THREAD_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(NEW_THREAD_BUTTON));
         waiter.waitForPageOpened((PREVIEW_POST_BUTTON), driver);
+        log.info("Init new post to thread");
         return this;
     }
 
@@ -40,11 +43,14 @@ public class SetPostPage extends HeaderPage {
         new Input(driver, "subject").writeTextToInput(title);
         driver.switchTo().frame(driver.findElement(IFRAIME_XPATH));
         new Input(driver, "Editor").writeTextToTextarea(text);
+        log.info("In replay form has been added title {} and text {}", title, text);
         driver.switchTo().defaultContent();
         new Checkbox(driver).setCheckboxValue((By.xpath(String.format(ICON_XPATH, value))), true);
         new Checkbox(driver).isCheckBoxChecked(driver.findElement(By.xpath(String.format(ICON_XPATH, value))));
+        log.info("In replay form has been added icon {}", value);
         new Button(driver).clickButton(driver.findElement(PREVIEW_POST_BUTTON));
         waiter.waitForPageOpened((PREVIEW_XPATH), driver);
+        log.info("Replay form is displayed in preview");
         return this;
     }
 
@@ -54,7 +60,13 @@ public class SetPostPage extends HeaderPage {
      * @return
      */
     public String getTextMessage() {
-        return driver.findElement(PREVIEW_MESSAGE_XPATH).getText();
+        try {
+            log.info("Getting preview message text.");
+            return driver.findElement(PREVIEW_MESSAGE_XPATH).getText();
+        } catch (Exception e) {
+            log.error("Failed to get preview message text.", e);
+            return "";
+        }
     }
 
     /**
