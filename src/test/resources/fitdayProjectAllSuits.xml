@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="FitdayProject Test Suite" parallel="tests" thread-count="2">
+    <suite-files>
+        <suite-file path="fitdayProjectForumTest.xml"></suite-file>
+        <suite-file path="fitdayProjectLogoutTest.xml"></suite-file>
+        <suite-file path="fitdayProjectLoginTest.xml"></suite-file>
+        <suite-file path="fitdayProjectPostTest.xml"></suite-file>
+        <suite-file path="fitdayProjectSearchTest.xml"></suite-file>
+        <suite-file path="fitdayProjectSubscribeTest.xml"></suite-file>
+        <suite-file path="fitdayProjectUserSettingsTest.xml"></suite-file>
+    </suite-files>
+</suite>
