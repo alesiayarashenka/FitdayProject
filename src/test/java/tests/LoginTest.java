@@ -37,6 +37,6 @@ public class LoginTest extends Preconditions implements ITestConstants {
     @Test(description = "Login user with correct username and password")
     public void successfulLoginTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
-        headerSteps.checkWelcomeMessageInHeader(USER);
+        headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
     }
 }
