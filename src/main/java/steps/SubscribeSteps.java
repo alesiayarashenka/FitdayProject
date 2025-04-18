@@ -19,9 +19,16 @@ public class SubscribeSteps extends BaseSteps {
         threadPage = new ThreadPage(driver);
     }
 
+//    @Step("Select subscribe option and direct to subscription page")
+//    public SubscribeSteps directToSubscriptionPage(String user) {
+//        headerPage.isForumsOpened(user);
+//        headerPage.selectUsersSubscriptionPage("Subscribed Threads", "Subscriptions");
+//        return this;
+//    }
+
     @Step("Select subscribe option and direct to subscription page")
-    public SubscribeSteps directToSubscriptionPage(String user) {
-        headerPage.isForumsOpened(user);
+    public SubscribeSteps directToSubscriptionPage() {
+        headerPage.isForumsOpened();
         headerPage.selectUsersSubscriptionPage("Subscribed Threads", "Subscriptions");
         return this;
     }
