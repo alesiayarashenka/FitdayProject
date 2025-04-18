@@ -43,10 +43,15 @@ public class HeaderPage extends BasePage {
      * @return
      */
     public boolean isForumsOpened(String user) {
-        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
-        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
-        log.info("Welcome message with name {} is displayed", System.getenv("username"));
-        return welcomeMessage.isDisplayed();
+        try {
+            log.info("Checking visible user's name in header");
+            waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
+            WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
+            return welcomeMessage.isDisplayed();
+        } catch (Exception e) {
+            log.error("Failed to check visible user's name in header", e);
+            return false;
+        }
     }
 
     /**
