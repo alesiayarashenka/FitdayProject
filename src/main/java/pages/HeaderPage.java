@@ -42,15 +42,14 @@ public class HeaderPage extends BasePage {
      *
      * @return
      */
-    public boolean isForumsOpened(String user) {
+    public void isForumsOpened(String user) {
         try {
             log.info("Checking visible user's name in header");
             waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
             WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
-            return welcomeMessage.isDisplayed();
+            Assert.assertTrue(welcomeMessage.isDisplayed());
         } catch (Exception e) {
             log.error("Failed to check visible user's name in header", e);
-            return false;
         }
     }
 
