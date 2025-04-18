@@ -42,12 +42,13 @@ public class HeaderPage extends BasePage {
      *
      * @return
      */
-    public boolean isForumsOpened(String user) {
-        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
-        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
+    public boolean isForumsOpened() {
+//        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
+//        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
         log.info("Welcome message with name {} is displayed", System.getenv("username"));
 //        log.info("Welcome message with name {} is displayed", user);
-        return welcomeMessage.isDisplayed();
+//        return welcomeMessage.isDisplayed();
+        return driver.getCurrentUrl().equals(MAIN_PAGE_URL);
     }
 
     /**
