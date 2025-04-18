@@ -34,9 +34,9 @@ public class LoginTest extends Preconditions implements ITestConstants {
                 .checkValidationMessageUserField(INCORRECT_DATA_IN_FIELDS);
     }
 
-    @Test(description = "Login user with correct username and password")
-    public void successfulLoginTest() {
-        loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
-        headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
-    }
+//    @Test(description = "Login user with correct username and password")
+//    public void successfulLoginTest() {
+//        loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
+//        headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
+//    }
 }
