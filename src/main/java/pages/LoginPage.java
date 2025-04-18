@@ -30,7 +30,8 @@ public class LoginPage extends BasePage {
         new Input(driver, "password").writeTextToInput(user.getPassword());
         waiter.waitForButtonClickable((LOGIN_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(LOGIN_BUTTON));
-        log.info("User is registered with username: {}", user.getUsername());
+        waiter.waitForPageLoaded();
+        log.info("User is registered with username: {}",System.getenv("username"));
         return new ForumsPage(driver);
     }
 
