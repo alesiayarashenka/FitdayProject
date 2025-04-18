@@ -38,5 +38,6 @@ public class LoginTest extends Preconditions implements ITestConstants {
     public void successfulLoginTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
+//        headerSteps.checkWelcomeMessageInHeader(USER);
     }
 }
