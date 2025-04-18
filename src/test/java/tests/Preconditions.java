@@ -5,13 +5,13 @@ import entity.User;
 public class Preconditions extends BaseTest {
 
     protected static final User userWithEmptyUserName = User.builder()
-            .password(PASSWORD)
+            .password(System.getenv("password"))
             .username("")
             .build();
 
     protected static final User userWithEmptyPassword = User.builder()
             .password("")
-            .username(USER)
+            .username(System.getenv("username"))
             .build();
 
     protected static final User userWithIncorrectFields = User.builder()
@@ -20,7 +20,7 @@ public class Preconditions extends BaseTest {
             .build();
 
     protected static final User userSuccessLogin = User.builder()
-            .password(PASSWORD)
-            .username(USER)
+            .password(System.getenv("password"))
+            .username(System.getenv("username"))
             .build();
 }
