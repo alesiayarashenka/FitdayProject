@@ -45,7 +45,7 @@ public class HeaderPage extends BasePage {
     public boolean isForumsOpened(String user) {
         waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
         WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
-        log.info("Welcome message with name {} is displayed", user);
+        log.info("Welcome message with name {} is displayed", System.getenv("username"));
         return welcomeMessage.isDisplayed();
     }
 

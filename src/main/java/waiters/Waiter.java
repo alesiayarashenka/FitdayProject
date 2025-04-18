@@ -33,7 +33,7 @@ public class Waiter {
      * @return
      */
     public void waitForPageOpened(By element, WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOf((driver.findElement(element))));
     }
 
@@ -44,7 +44,7 @@ public class Waiter {
      */
     public void waitForButtonClickable(By element, WebDriver driver) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(element));
         } catch (Exception e) {
             log.error("Ошибка при отображении кнопки: " + e.getMessage());
