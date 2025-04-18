@@ -7,8 +7,8 @@ public class LogoutTest extends Preconditions implements ITestConstants {
     @Test(description = "Login user and logout")
     public void logoutTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
-//        headerSteps.checkWelcomeMessageInHeader(System.getenv("username"))
-        headerSteps.checkWelcomeMessageInHeader()
+        headerSteps.checkWelcomeMessageInHeader(System.getenv("username"))
+//     headerSteps.checkWelcomeMessageInHeader(USER) //---for local
                 .logoutFromApp(LOGOUT_QUESTION_IN_FORM);
     }
 }

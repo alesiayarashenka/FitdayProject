@@ -18,8 +18,8 @@ public class HeaderSteps extends BaseSteps {
     }
 
     @Step("Check welcome message in header on forum page after login")
-    public HeaderSteps checkWelcomeMessageInHeader() {
-        headerPage.isForumsOpened();
+    public HeaderSteps checkWelcomeMessageInHeader(String user) {
+        headerPage.isForumsOpened(user);
         return this;
     }
 
