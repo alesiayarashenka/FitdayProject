@@ -13,7 +13,7 @@ import java.util.List;
 
 @Log4j2
 public class HeaderPage extends BasePage {
-    private static final String WELCOME_MEMBER_XPATH = "//div[@class='toolbox']";
+    private static final String WELCOME_MEMBER_XPATH = "//div[contains(@class,'member-form')]/*[contains(text(),'Welcome, ')]/*[contains(text(),'%s')]";
     private static final String PAGE_ITEM_XPATH = "//h1//*[contains(text(),'%s')]";
     private static final String TAB_HEADER_XPATH = "//div[@class='top-nav-left']/child::ul/child::li/a[contains(text(),'%s')]";
     private static final String TAB_DROPDOWN_LIST_XPATH = "//*[@href][contains(text(),'%s')]/ancestor::ul[@class='dropdown']";
@@ -54,10 +54,9 @@ public class HeaderPage extends BasePage {
         return welcomeMessage.isDisplayed();
     }
 
-    public boolean isOpened() throws InterruptedException {
-        waiter.waitForPageLoaded();
-        Thread.sleep(1000);
+    public boolean isOpened() {
         log.info("Wait for opened page");
+        action.scrollToElement(driver.findElement((By.xpath(String.format(WELCOME_MEMBER_XPATH)))));
         waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH))), driver);
         log.info("Element is visibility");
         WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH)));
