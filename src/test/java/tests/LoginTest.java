@@ -39,6 +39,6 @@ public class LoginTest extends Preconditions implements ITestConstants {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
 //      headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
 //        headerSteps.checkWelcomeMessageInHeader(USER); //---for local
-        headerPage.isPageOpened("FitDay Discussion Boards");
+        headerPage.isOpened();
     }
 }
