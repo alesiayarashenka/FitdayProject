@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class UserSettingsTest extends Preconditions implements ITestConstants {
 
     @Test(description = "Login user, direct to control panel, upload avatar")
-    public void uploadAvatarTest() {
+    public void uploadAvatarTest() throws InterruptedException {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
 //      headerSteps.checkWelcomeMessageInHeader(USER); //---for local
@@ -16,7 +16,7 @@ public class UserSettingsTest extends Preconditions implements ITestConstants {
     }
 
     @Test(description = "Login user, direct to user profile page, fill information 'Biography', clean information")
-    public void fillUserInformationTest() {
+    public void fillUserInformationTest() throws InterruptedException {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
 //      headerSteps.checkWelcomeMessageInHeader(USER); //---for local
