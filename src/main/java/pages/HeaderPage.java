@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,12 +43,36 @@ public class HeaderPage extends BasePage {
      *
      * @return
      */
+//    public boolean isForumsOpened(String user) {
+//        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
+//        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
+//        log.info("Welcome message with name {} is displayed", System.getenv("username"));
+////        log.info("Welcome message with name {} is displayed", user);  //---for local
+//        return welcomeMessage.isDisplayed();
+//    }
+
     public boolean isForumsOpened(String user) {
-        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
-        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
+        log.info("Try to get Welcome message with name {} is displayed", System.getenv("username"));
+        Duration duration = Duration.ofSeconds(60);
+        int i = 0;
+        while (duration.getSeconds() < 60) {
+            try {
+                if (i < 4) {
+                    if (!driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+                        Thread.sleep(500);
+                        ++i;
+                    }
+                    if (driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+                        break;
+                    }
+                }
+            } catch(Exception a){
+                break;
+            }
+
+        }
         log.info("Welcome message with name {} is displayed", System.getenv("username"));
-//        log.info("Welcome message with name {} is displayed", user);  //---for local
-        return welcomeMessage.isDisplayed();
+        return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
     }
 
     /**
