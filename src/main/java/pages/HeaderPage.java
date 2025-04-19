@@ -53,28 +53,46 @@ public class HeaderPage extends BasePage {
 //        return welcomeMessage.isDisplayed();
 //    }
 
-    public void isForumsOpened(String user) {
+    public boolean isForumsOpened(String user) {
         log.info("Try to get Welcome message with name {} is displayed", System.getenv("username"));
         Duration duration = Duration.ofSeconds(60);
         int i = 0;
         while (duration.getSeconds() < 60) {
+//            try {
+//                if (i < 6) {
+//                    if (!driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+//                        log.info("Element is not displayed yet");
+//                        Thread.sleep(1000);
+//                        ++i;
+//                    }
+//                    if (driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+//                        log.info("Welcome message with name {} is displayed", System.getenv("username"));
+//                        break;
+//                    }
+//                }
+//            } catch(Exception a){
+//                break;
+//            }
             try {
-                if (i < 6) {
-                    if (!driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
-                        log.info("Element is not displayed yet");
-                        Thread.sleep(1000);
-                        ++i;
-                    }
-                    if (driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
-                        log.info("Welcome message with name {} is displayed", System.getenv("username"));
-                        break;
-                    }
-                }
-            } catch(Exception a){
+                log.info("Getting Welcome message");
+                return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
+            } catch (Exception e) {
+                log.error("Failed to get error message text.", e);
                 break;
             }
         }
+        return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
     }
+
+    /*
+    try {
+            log.info("Getting error message text.");
+            return driver.findElement(ERROR_MESSAGE).getText();
+        } catch (Exception e) {
+            log.error("Failed to get error message text.", e);
+            return "";
+        }
+     */
 
      /**
      * This is select option in list of accessible user's pages in header to direct to subscription page
