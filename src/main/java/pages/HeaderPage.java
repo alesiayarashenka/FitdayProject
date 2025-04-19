@@ -58,6 +58,7 @@ public class HeaderPage extends BasePage {
     public boolean isOpened() {
         log.info("Wait for opened page");
         action.scrollToElement(driver.findElement((By.xpath(String.format(WELCOME_XPATH)))));
+        log.info("scrolled to element");
         waiter.waitForPageOpened((By.xpath(String.format(WELCOME_XPATH))), driver);
         log.info("Element is visibility");
         WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH)));
