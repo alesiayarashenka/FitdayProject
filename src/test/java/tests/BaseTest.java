@@ -58,8 +58,6 @@ public class BaseTest implements IConstants {
         options.addArguments("--disable-popup-blocking");
         prefs.put("profile.default_content_setting_values.notifications", 2);
         options.setExperimentalOption("prefs", prefs);
-        options.addArguments("Headless");
-        options.addArguments("window-size=1920,1080");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
