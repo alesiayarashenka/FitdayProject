@@ -31,7 +31,9 @@ public class HeaderPage extends BasePage {
      *
      * @return
      */
-    public boolean isPageOpened(String option) {
+    public boolean isPageOpened(String option) throws InterruptedException {
+        waiter.waitForPageLoaded();
+        Thread.sleep(1000);
         waiter.waitForPageOpened((By.xpath(String.format(PAGE_ITEM_XPATH, option))), driver);
         WebElement pageItem = driver.findElement(By.xpath(String.format(PAGE_ITEM_XPATH, option)));
         log.info("Page {} is opened", option);
@@ -43,59 +45,22 @@ public class HeaderPage extends BasePage {
      *
      * @return
      */
-//    public boolean isForumsOpened(String user) {
-//        log.info("Wait for opened page");
-//        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
-//        log.info("Element is visibility");
-//        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
-////        log.info("Welcome message with name {} is displayed", System.getenv("username"));
-//        log.info("Welcome message with name {} is displayed", user);  //---for local
-//        return welcomeMessage.isDisplayed();
-//    }
-
     public boolean isForumsOpened(String user) {
-        log.info("Try to get Welcome message with name {} is displayed", System.getenv("username"));
-
-//            try {
-//                if (i < 6) {
-//                    if (!driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
-//                        log.info("Element is not displayed yet");
-//                        Thread.sleep(1000);
-//                        ++i;
-//                    }
-//                    if (driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
-//                        log.info("Welcome message with name {} is displayed", System.getenv("username"));
-//                        break;
-//                    }
-//                }
-//            } catch(Exception a){
-//                break;
-//            }
-        try {
-            log.info("Getting Welcome message");
-            return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
-        } catch (Exception e) {
-            log.error("Failed to get error message text.", e);
-            return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
-        }
+        log.info("Wait for opened page");
+        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
+        log.info("Element is visibility");
+        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
+        log.info("Welcome message with name {} is displayed", System.getenv("username"));
+//        log.info("Welcome message with name {} is displayed", user);  //---for local
+        return welcomeMessage.isDisplayed();
     }
 
-    /*
-    try {
-            log.info("Getting error message text.");
-            return driver.findElement(ERROR_MESSAGE).getText();
-        } catch (Exception e) {
-            log.error("Failed to get error message text.", e);
-            return "";
-        }
-     */
-
-     /**
+    /**
      * This is select option in list of accessible user's pages in header to direct to subscription page
      *
      * @return
      */
-    public void selectUsersSubscriptionPage(String option, String pageName) {
+    public void selectUsersSubscriptionPage(String option, String pageName) throws InterruptedException {
         new Dropdown(driver).userSelectSubscrOption(option);
         log.info("Page {} is opened", pageName);
         isPageOpened(pageName);
