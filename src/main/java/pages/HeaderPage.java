@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,22 +46,27 @@ public class HeaderPage extends BasePage {
      */
     public boolean isForumsOpened(String user) {
         log.info("Welcome message with name {} is displayed", System.getenv("username"));
+        Duration duration = Duration.ofSeconds(60);
         int i = 0;
-        while (i < 50) {
+        while (duration.getSeconds() < 60) {
             try {
-                if (!driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
-                    Thread.sleep(500);
-                    ++i;
+                if (i < 4) {
+                    if (!driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+                        Thread.sleep(500);
+                        ++i;
+                    }
+                    if (driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+                        break;
+                    }
                 }
-                if (driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+                } catch(Exception a){
                     break;
                 }
-            } catch (Exception a) {
-                break;
+
             }
+            return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
+
         }
-        return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
-    }
 
     /**
      * This is select option in list of accessible user's pages in header to direct to subscription page
