@@ -54,7 +54,9 @@ public class HeaderPage extends BasePage {
         return welcomeMessage.isDisplayed();
     }
 
-    public boolean isOpened() {
+    public boolean isOpened() throws InterruptedException {
+        waiter.waitForPageLoaded();
+        Thread.sleep(1000);
         log.info("Wait for opened page");
         waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH))), driver);
         log.info("Element is visibility");
