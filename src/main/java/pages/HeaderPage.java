@@ -51,7 +51,7 @@ public class HeaderPage extends BasePage {
 //        return welcomeMessage.isDisplayed();
 //    }
 
-    public boolean isForumsOpened(String user) {
+    public void isForumsOpened(String user) {
         log.info("Try to get Welcome message with name {} is displayed", System.getenv("username"));
         Duration duration = Duration.ofSeconds(60);
         int i = 0;
@@ -63,16 +63,14 @@ public class HeaderPage extends BasePage {
                         ++i;
                     }
                     if (driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed()) {
+                        log.info("Welcome message with name {} is displayed", System.getenv("username"));
                         break;
                     }
                 }
             } catch(Exception a){
                 break;
             }
-
         }
-        log.info("Welcome message with name {} is displayed", System.getenv("username"));
-        return driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user))).isDisplayed();
     }
 
     /**
