@@ -17,14 +17,14 @@ public class UserSettingsSteps extends BaseSteps {
     }
 
     @Step("Open control panel page")
-    public UserSettingsSteps openControlPanelPage(String pageName) {
+    public UserSettingsSteps openControlPanelPage(String pageName) throws InterruptedException {
         controlPanelPage.openPage(IConstants.CONTROL_PANEL_PAGE_URL);
         headerPage.isPageOpened(pageName);
         return this;
     }
 
     @Step("Open edit avatar page")
-    public UserSettingsSteps openEditAvatarPage(String pageName) {
+    public UserSettingsSteps openEditAvatarPage(String pageName) throws InterruptedException {
         controlPanelPage.directToEditAvatar(pageName);
         headerPage.isPageOpened(pageName);
         return this;

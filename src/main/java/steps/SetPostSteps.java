@@ -20,7 +20,7 @@ public class SetPostSteps extends BaseSteps {
     }
 
     @Step("Open forum 'diets' page")
-    public SetPostSteps openForumDietsPage(String pageName) {
+    public SetPostSteps openForumDietsPage(String pageName) throws InterruptedException {
         setPostPage.openPage(IConstants.FORUM_DIETS_PAGE_URL);
         headerPage.isPageOpened(pageName);
         return this;

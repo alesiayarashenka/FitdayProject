@@ -17,7 +17,7 @@ public class SearchForumSteps extends BaseSteps {
     }
 
     @Step("Open search forum page")
-    public SearchForumSteps openSearchForumPage(String pageName) {
+    public SearchForumSteps openSearchForumPage(String pageName) throws InterruptedException {
         searchForumPage.openPage(IConstants.SEARCH_PAGE_URL);
         headerPage.isPageOpened(pageName);
         return this;

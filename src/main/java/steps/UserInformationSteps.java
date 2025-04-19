@@ -17,7 +17,7 @@ public class UserInformationSteps extends BaseSteps {
     }
 
     @Step("Open user information page")
-    public UserInformationSteps openUserInformationPage(String pageName) {
+    public UserInformationSteps openUserInformationPage(String pageName) throws InterruptedException {
         userInformationPage.openPage(IConstants.PROFILE_PAGE_URL);
         headerPage.isPageOpened(pageName);
         return this;
