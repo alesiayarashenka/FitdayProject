@@ -14,7 +14,7 @@ import java.util.List;
 
 @Log4j2
 public class HeaderPage extends BasePage {
-    private static final String WELCOME_MEMBER_XPATH = "//strong[text()='%s ']";
+    private static final String WELCOME_MEMBER_XPATH = "//a[contains(text(),'Log Out %s')]";
     private static final String PAGE_ITEM_XPATH = "//h1//*[contains(text(),'%s')]";
     private static final String TAB_HEADER_XPATH = "//div[@class='top-nav-left']/child::ul/child::li/a[contains(text(),'%s')]";
     private static final String TAB_DROPDOWN_LIST_XPATH = "//*[@href][contains(text(),'%s')]/ancestor::ul[@class='dropdown']";
