@@ -53,9 +53,9 @@ public class HeaderPage extends BasePage {
     }
     public boolean isOpened() {
         log.info("Wait for opened page");
-        waiter.waitForPageOpened((By.xpath(String.format("//strong[contains(text(),'FOOD')]"))), driver);
+        waiter.waitForPageOpened((By.xpath(String.format("//div[@class='trow tmenu text-center']/child::div/a[contains(text(),'New Posts')]"))), driver);
         log.info("Element is visibility");
-        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH)));
+        WebElement welcomeMessage = driver.findElement(By.xpath(String.format("//div[@class='trow tmenu text-center']/child::div/a[contains(text(),'New Posts')]")));
         log.info("Welcome message with name {} is displayed", System.getenv("username"));
 //        log.info("Welcome message with name {} is displayed", user);  //---for local
         return welcomeMessage.isDisplayed();
