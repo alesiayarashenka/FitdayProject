@@ -3,6 +3,7 @@ package tests;
 import constants.IConstants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import listeners.TestListener;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,6 +16,7 @@ import pages.*;
 import steps.*;
 import utils.PropertyReader;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -60,8 +62,10 @@ public class BaseTest implements IConstants {
         options.setExperimentalOption("prefs", prefs);
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+//        driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         PageFactory.initElements(driver, this);
         initPages();
     }

@@ -34,7 +34,7 @@ public class Waiter {
      */
     public void waitForPageOpened(By element, WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(element)));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
     }
 
     /**
