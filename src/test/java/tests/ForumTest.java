@@ -10,7 +10,7 @@ public class ForumTest extends Preconditions implements ITestConstants {
     public void checkOptionsInHeaderTabsTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"))
-//      headerSteps.checkWelcomeMessageInHeader(USER); //---for local
+//      headerSteps.checkWelcomeMessageInHeader(USER) //---for local
                 .checkExistingHeaderTabs(HEADER_TABS_LIST);
         threadSteps.checkOptionsInTabs("Forums", List.of(FORUM_VALUE_LIST));
         threadSteps.checkOptionsInTabs("Tools", List.of(TOOLS_VALUE_LIST));
@@ -20,7 +20,7 @@ public class ForumTest extends Preconditions implements ITestConstants {
     public void checkOptionsInHeaderDropdownTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"))
-//      headerSteps.checkWelcomeMessageInHeader(USER); //---for local
+//      headerSteps.checkWelcomeMessageInHeader(USER) //---for local
         .checkDropdownOptionsInHeaderUserDropdown(List.of(USER_HEADER_OPTIONS_DROPDOWN));
     }
 

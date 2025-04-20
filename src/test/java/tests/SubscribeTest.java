@@ -9,8 +9,8 @@ public class SubscribeTest extends BaseTest implements ITestConstants {
     @Test(description = "Login user, check not existing subscription")
     public void checkUserSubscriptionTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
-//        subscribeSteps.directToSubscriptionPage(System.getenv("username"))
-        subscribeSteps.directToSubscriptionPage(USER) //---for local
+        subscribeSteps.directToSubscriptionPage(System.getenv("username"))
+//        subscribeSteps.directToSubscriptionPage(USER) //---for local
                 .checkSubscribeMessageInField(UNSUBSCRIBE_USER_MESSAGE);
     }
 

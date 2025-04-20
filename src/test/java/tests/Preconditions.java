@@ -22,5 +22,7 @@ public class Preconditions extends BaseTest {
     protected static final User userSuccessLogin = User.builder()
             .password(System.getenv("password"))
             .username(System.getenv("username"))
+//            .password(PASSWORD) //---for local
+//            .username(USER) //---for local
             .build();
 }
