@@ -7,7 +7,7 @@ import static tests.Preconditions.userSuccessLogin;
 public class SubscribeTest extends BaseTest implements ITestConstants {
 
     @Test(description = "Login user, check not existing subscription")
-    public void checkUserSubscriptionTest() throws InterruptedException {
+    public void checkUserSubscriptionTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
 //        subscribeSteps.directToSubscriptionPage(System.getenv("username"))
         subscribeSteps.directToSubscriptionPage(USER) //---for local
@@ -15,7 +15,7 @@ public class SubscribeTest extends BaseTest implements ITestConstants {
     }
 
     @Test(description = "Login user, subscribe to forum, delete subscription in forum")
-    public void subscribeAndDeleteSubscriptionTest() throws InterruptedException {
+    public void subscribeAndDeleteSubscriptionTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         threadSteps.chooseForumToSubscribe(FORUM_WEIGHT_LOSS_PAGE_NAME, SUBFORUM_DIETS_PAGE_NAME);
         subscribeSteps.addSubscriptionToThread()
@@ -25,7 +25,7 @@ public class SubscribeTest extends BaseTest implements ITestConstants {
     }
 
     @Test(description = "Login user, subscribe to thread, delete subscription in subscription page")
-    public void subscribeAndDeleteSubscriptionInSubscriptionPageTest() throws InterruptedException {
+    public void subscribeAndDeleteSubscriptionInSubscriptionPageTest() {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         threadSteps.chooseForumToSubscribe(FORUM_WEIGHT_LOSS_PAGE_NAME, SUBFORUM_DIETS_PAGE_NAME)
                 .chooseThreadToSubscribe(SUBFORUM_DIETS_PAGE_NAME, THREAD_PAGE_NAME);

@@ -15,7 +15,7 @@ public class SearchResultSteps extends BaseSteps {
     }
 
     @Step("Open search results page")
-    public SearchResultSteps isSearchResultsPageOpened(String pageName) throws InterruptedException {
+    public SearchResultSteps isSearchResultsPageOpened(String pageName) {
         headerPage.isPageOpened(pageName);
         return this;
     }

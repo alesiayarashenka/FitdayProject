@@ -14,7 +14,6 @@ import java.util.List;
 @Log4j2
 public class HeaderPage extends BasePage {
     private static final String WELCOME_MEMBER_XPATH = "//div[contains(@class,'member-form')]/*[contains(text(),'Welcome, ')]/*[contains(text(),'%s')]";
-    private static final String WELCOME_XPATH = "//h1//*[contains(text(),'FitDay Discussion Boards')]";
     private static final String PAGE_ITEM_XPATH = "//h1//*[contains(text(),'%s')]";
     private static final String TAB_HEADER_XPATH = "//div[@class='top-nav-left']/child::ul/child::li/a[contains(text(),'%s')]";
     private static final String TAB_DROPDOWN_LIST_XPATH = "//*[@href][contains(text(),'%s')]/ancestor::ul[@class='dropdown']";
@@ -31,9 +30,7 @@ public class HeaderPage extends BasePage {
      *
      * @return
      */
-    public boolean isPageOpened(String option) throws InterruptedException {
-        waiter.waitForPageLoaded();
-        Thread.sleep(1000);
+    public boolean isPageOpened(String option) {
         waiter.waitForPageOpened((By.xpath(String.format(PAGE_ITEM_XPATH, option))), driver);
         WebElement pageItem = driver.findElement(By.xpath(String.format(PAGE_ITEM_XPATH, option)));
         log.info("Page {} is opened", option);
@@ -46,24 +43,12 @@ public class HeaderPage extends BasePage {
      * @return
      */
     public boolean isForumsOpened(String user) {
-        log.info("Wait for opened page");
+        log.info("Wait for opening page");
         waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
         log.info("Element is visibility");
         WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
         log.info("Welcome message with name {} is displayed", System.getenv("username"));
-//        log.info("Welcome message with name {} is displayed", user);  //---for local
-        return welcomeMessage.isDisplayed();
-    }
-
-    public boolean isOpened() {
-        log.info("Wait for opened page");
-        action.scrollToElement(driver.findElement((By.xpath(String.format(WELCOME_XPATH)))));
-        log.info("scrolled to element");
-        waiter.waitForPageOpened((By.xpath(String.format(WELCOME_XPATH))), driver);
-        log.info("Element is visibility");
-        WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH)));
-        log.info("Welcome message with name {} is displayed", System.getenv("username"));
-//        log.info("Welcome message with name {} is displayed", user);  //---for local
+//      log.info("Welcome message with name {} is displayed", user);  //---for local
         return welcomeMessage.isDisplayed();
     }
 
@@ -72,7 +57,7 @@ public class HeaderPage extends BasePage {
      *
      * @return
      */
-    public void selectUsersSubscriptionPage(String option, String pageName) throws InterruptedException {
+    public void selectUsersSubscriptionPage(String option, String pageName) {
         new Dropdown(driver).userSelectSubscrOption(option);
         log.info("Page {} is opened", pageName);
         isPageOpened(pageName);

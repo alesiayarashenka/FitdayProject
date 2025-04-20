@@ -20,7 +20,7 @@ public class SubscribeSteps extends BaseSteps {
     }
 
     @Step("Select subscribe option and direct to subscription page")
-    public SubscribeSteps directToSubscriptionPage(String user) throws InterruptedException {
+    public SubscribeSteps directToSubscriptionPage(String user) {
         headerPage.isForumsOpened(user);
         headerPage.selectUsersSubscriptionPage("Subscribed Threads", "Subscriptions");
         return this;
@@ -46,7 +46,7 @@ public class SubscribeSteps extends BaseSteps {
     }
 
     @Step("Open subscribe page")
-    public SubscribeSteps openSubscribePage(String pageName) throws InterruptedException {
+    public SubscribeSteps openSubscribePage(String pageName) {
         subscribePage.openPage(IConstants.SUBSCRIPTION_PAGE_URL);
         headerPage.isPageOpened(pageName);
         return this;

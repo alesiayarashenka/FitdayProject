@@ -20,7 +20,7 @@ public class ThreadSteps extends BaseSteps {
     }
 
     @Step("Open forum WEIGHT LOSS, choose subforum")
-    public ThreadSteps chooseForumToSubscribe(String forumName, String threadName) throws InterruptedException {
+    public ThreadSteps chooseForumToSubscribe(String forumName, String threadName) {
         threadPage.openPage(IConstants.THREAD_WEIGHT_LOSS_PAGE_URL);
         headerPage.isPageOpened(forumName);
         threadPage.directToForum(threadName);
@@ -29,7 +29,7 @@ public class ThreadSteps extends BaseSteps {
     }
 
     @Step("Delete subscription to thread")
-    public ThreadSteps deleteSubscriptionToThread(String threadName) throws InterruptedException {
+    public ThreadSteps deleteSubscriptionToThread(String threadName) {
         headerPage.isPageOpened(threadName);
         threadPage.unsubscribeFromThread();
         threadPage.getMessageDeleteSubscription();
@@ -43,7 +43,7 @@ public class ThreadSteps extends BaseSteps {
     }
 
     @Step("Open forum WEIGHT LOSS page, choose thread")
-    public ThreadSteps chooseThreadToSubscribe(String subForumName, String threadName) throws InterruptedException {
+    public ThreadSteps chooseThreadToSubscribe(String subForumName, String threadName) {
         headerPage.isPageOpened(subForumName);
         threadPage.directToThread(threadName);
         headerPage.isPageOpened(threadName);

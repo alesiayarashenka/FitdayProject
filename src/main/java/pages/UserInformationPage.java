@@ -77,7 +77,7 @@ public class UserInformationPage extends BasePage {
     public UserInformationPage saveChangesInUserInformationField(String option) {
         new Button(driver).clickButton(driver.findElement(SAVE_INFORMATION_FORM_BUTTON));
         waiter.waitForButtonClickable((By.xpath(String.format(USER_EDITE_PROFILE_BUTTON, option))), driver);
-        log.info("user information has been saved");
+        log.info("User information has been saved");
         return this;
     }
 }
