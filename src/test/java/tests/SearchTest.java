@@ -11,7 +11,7 @@ public class SearchTest extends Preconditions implements ITestConstants {
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
 //        headerSteps.checkWelcomeMessageInHeader(USER); //---for local
         searchForumSteps.openSearchForumPage(SEARCH_PAGE_NAME)
-                .fillSearchForumForm("health", "and fitness");
+                .fillSearchForumForm("health", "and fitness", "titleonly", "1", "sortby", "title");
         searchResultSteps.isSearchResultsPageOpened(SEARCH_RESULTS_PAGE_NAME);
         Assert.assertTrue(searchResultSteps.getForumNameInResults("Nutrition & labeling"));
     }

@@ -2,6 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.HeaderPage;
 import pages.LoginPage;
@@ -33,16 +34,26 @@ public class HeaderSteps extends BaseSteps {
         return this;
     }
 
-    @Step("Check existing header tabs")
-    public HeaderSteps checkExistingHeaderTabs(String... tab) {
-        headerPage.isTabsDisplayed(tab);
-        return this;
+    @Step("checks option names in dropdown")
+    public void checkOptionsNameInList(List<String> optionNameList, List<String> optionNames) {
+        for (int i = 0; i < optionNameList.size(); i++)
+            for (String name : optionNames) {
+                Assert.assertTrue(optionNameList.get(i).contains(name));
+            }
     }
 
     @Step("Check dropdown options in header user dropdown")
     public HeaderSteps checkDropdownOptionsInHeaderUserDropdown(List<String> forumNames) {
-        headerPage.openHeaderUserDropdown()
-                .checkOptionsNameInList(headerPage.getTitlesInHeaderDropdown(), forumNames);
+        headerPage.openHeaderUserDropdown();
+        checkOptionsNameInList(headerPage.getTitlesInHeaderDropdown(), forumNames);
+        return this;
+    }
+
+    @Step("Check existing header tabs")
+    public HeaderSteps isHeaderTabDisplayed(String... tabValue) {
+        for(WebElement tabName : headerPage.getTabHeaderList(tabValue)){
+            Assert.assertTrue(tabName.isDisplayed());
+        }
         return this;
     }
 }

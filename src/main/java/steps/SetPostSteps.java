@@ -9,13 +9,11 @@ import pages.SetPostPage;
 import pages.SubscribePage;
 
 public class SetPostSteps extends BaseSteps {
-    private SubscribePage subscribePage;
     private SetPostPage setPostPage;
     private HeaderPage headerPage;
 
     public SetPostSteps(WebDriver driver) {
         setPostPage = new SetPostPage(driver);
-        subscribePage = new SubscribePage(driver);
         headerPage = new HeaderPage(driver);
     }
 

@@ -29,7 +29,7 @@ public class LoginPage extends BasePage {
         waiter.waitForButtonClickable((LOGIN_BUTTON), driver);
         new Button(driver).clickButton(driver.findElement(LOGIN_BUTTON));
         waiter.waitForPageLoaded();
-        log.info("Page is downloaded, user is logged with username: {}",System.getenv("username"));
+        log.info("Page is downloaded, user is logged with username: {}", System.getenv("username"));
         return new ForumsPage(driver);
     }
 

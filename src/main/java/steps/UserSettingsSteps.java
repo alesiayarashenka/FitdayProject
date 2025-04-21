@@ -32,9 +32,9 @@ public class UserSettingsSteps extends BaseSteps {
 
     @Step("Choose custom avatar to upload image")
     public UserSettingsSteps chooseCustomAvatar() {
-        controlPanelPage.checkboxAvatarIsSelected("Do not use an avatar");
+        controlPanelPage.isCheckboxAvatarSelected("Do not use an avatar");
         controlPanelPage.selectAvatarCheckbox("Use Custom Avatar");
-        controlPanelPage.checkboxAvatarIsSelected("Use Custom Avatar");
+        controlPanelPage.isCheckboxAvatarSelected("Use Custom Avatar");
         return this;
     }
 

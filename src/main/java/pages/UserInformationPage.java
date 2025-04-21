@@ -49,12 +49,14 @@ public class UserInformationPage extends BasePage {
         return this;
     }
 
+
     /**
      * This checks added information in filled form
      *
      * @return
      */
     public boolean checkProfileFieldText(String fieldName, String value) {
+
         return driver.findElement(By.xpath(String.format(INFORMATION_FIELD_XPATH, fieldName))).getAttribute("innerText").contentEquals(value);
     }
 
@@ -76,7 +78,9 @@ public class UserInformationPage extends BasePage {
      */
     public UserInformationPage saveChangesInUserInformationField(String option) {
         new Button(driver).clickButton(driver.findElement(SAVE_INFORMATION_FORM_BUTTON));
-        waiter.waitForButtonClickable((By.xpath(String.format(USER_EDITE_PROFILE_BUTTON, option))), driver);
+        waiter.waitForPageLoaded();
+        waiter.waitForPageOpened((By.xpath(String.format(INFORMATION_FIELD_XPATH, option))), driver);
+        waiter.waitForElemIsNotDisplayed((SAVE_INFORMATION_FORM_BUTTON), driver);
         log.info("User information has been saved");
         return this;
     }

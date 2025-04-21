@@ -44,7 +44,7 @@ public class ControlPanelPage extends BasePage {
      *
      * @return
      */
-    public boolean checkboxAvatarIsSelected(String checkboxName) {
+    public boolean isCheckboxAvatarSelected(String checkboxName) {
         return new Checkbox(driver).isCheckBoxChecked(driver.findElement(By.xpath(String.format(CHECKBOX_AVATAR_XPATH, checkboxName))));
     }
 

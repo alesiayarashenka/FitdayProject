@@ -3,6 +3,7 @@ package steps;
 import constants.IConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.HeaderPage;
 import pages.UserInformationPage;
 
@@ -28,8 +29,8 @@ public class UserInformationSteps extends BaseSteps {
         userInformationPage.chooseUserInformationValue("Biography");
         userInformationPage.isProfileInformationFieldOpened();
         userInformationPage.fillBiographyInformationField(value);
-        userInformationPage.saveChangesInUserInformationField("Biography");
-        userInformationPage.checkProfileFieldText("profilefield_value_1", value);
+        userInformationPage.saveChangesInUserInformationField("profilefield_value_1");
+        Assert.assertTrue(userInformationPage.checkProfileFieldText("profilefield_value_1", value));
     }
 
     @Step("Clear value in user information field 'Biography'")
@@ -37,7 +38,7 @@ public class UserInformationSteps extends BaseSteps {
         userInformationPage.chooseUserInformationValue("Biography");
         userInformationPage.isProfileInformationFieldOpened();
         userInformationPage.clearInformationField("ctb_field1");
-        userInformationPage.saveChangesInUserInformationField("Biography");
-        userInformationPage.checkProfileFieldText("profilefield_value_1", "N/A");
+        userInformationPage.saveChangesInUserInformationField("profilefield_value_1");
+        Assert.assertTrue(userInformationPage.checkProfileFieldText("profilefield_value_1", "N/A"));
     }
 }

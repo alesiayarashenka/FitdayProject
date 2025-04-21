@@ -50,10 +50,18 @@ public class ThreadSteps extends BaseSteps {
         return this;
     }
 
+   @Step("Check option names in dropdown list")
+    public void checkOptionsNameInList(List<String> optionNameList, List<String> optionNames) {
+        for (int i = 0; i < optionNameList.size(); i++)
+            for (String name : optionNames) {
+                Assert.assertTrue(optionNameList.get(i).contains(name));
+            }
+    }
+
     @Step("Move to header tab, checks options in dropdown")
     public ThreadSteps checkOptionsInTabs(String tabName, List<String> forumNames) {
         headerPage.moveToTabHeaderOption(tabName);
-        headerPage.checkOptionsNameInList(headerPage.getTitlesInTab(tabName), forumNames);
+        checkOptionsNameInList(headerPage.getTitlesInTab(tabName), forumNames);
         return this;
     }
 }

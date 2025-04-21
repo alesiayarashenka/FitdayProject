@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +42,12 @@ public class HeaderPage extends BasePage {
      * @return
      */
     public boolean isForumsOpened(String user) {
-        log.info("Wait for opening page");
+        log.info("Wait for opening main forum page");
         waiter.waitForPageOpened((By.xpath(String.format(WELCOME_MEMBER_XPATH, user))), driver);
-        log.info("Element is visibility");
+        log.info("Welcome message is visibility");
         WebElement welcomeMessage = driver.findElement(By.xpath(String.format(WELCOME_MEMBER_XPATH, user)));
-        log.info("Welcome message with name {} is displayed", System.getenv("username"));
-//      log.info("Welcome message with name {} is displayed", user);  //---for local
+        log.info("Forum page is opened and welcome message with name {} is displayed", System.getenv("username"));
+//      log.info("Forum page is opened and welcome message with name {} is displayed", user);  //---for local
         return welcomeMessage.isDisplayed();
     }
 
@@ -120,26 +119,17 @@ public class HeaderPage extends BasePage {
     }
 
     /**
-     * This checks option names in dropdown
+     * This get list of tabs in header
      *
      * @return
      */
-    public void checkOptionsNameInList(List<String> optionNameList, List<String> optionNames) {
-        for (int i = 0; i < optionNameList.size(); i++)
-            for (String name : optionNames) {
-                Assert.assertTrue(optionNameList.get(i).contains(name));
-            }
-    }
-
-    /**
-     * This checks tabs in header are displayed
-     *
-     * @return
-     */
-    public void isTabsDisplayed(String... tabNames) {
-        for (String tabName : tabNames) {
-          Assert.assertTrue(driver.findElement(By.xpath(String.format(TAB_HEADER_XPATH, tabName))).isDisplayed());
+    public List<WebElement> getTabHeaderList(String... tabName) {
+        ArrayList<WebElement> tabList = new ArrayList<>();
+        List<WebElement> optionsName = driver.findElements(By.xpath(String.format(TAB_HEADER_XPATH, tabName)));
+        for (WebElement webElement : optionsName) {
+            tabList.add(webElement);
         }
+        return tabList;
     }
 
     /**

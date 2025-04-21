@@ -11,7 +11,7 @@ public class ForumTest extends Preconditions implements ITestConstants {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"))
 //      headerSteps.checkWelcomeMessageInHeader(USER) //---for local
-                .checkExistingHeaderTabs(HEADER_TABS_LIST);
+                .isHeaderTabDisplayed(HEADER_TABS_LIST);
         threadSteps.checkOptionsInTabs("Forums", List.of(FORUM_VALUE_LIST));
         threadSteps.checkOptionsInTabs("Tools", List.of(TOOLS_VALUE_LIST));
     }
@@ -29,6 +29,6 @@ public class ForumTest extends Preconditions implements ITestConstants {
         loginSteps.loginAndWaitForPageOpened(userSuccessLogin);
         headerSteps.checkWelcomeMessageInHeader(System.getenv("username"));
 //        headerSteps.checkWelcomeMessageInHeader(USER); //---for local
-        forumSteps.checkExistingForumTabs(FORUM_TABS_LIST);
+        forumSteps.isForumTabDisplayed(FORUM_TABS_LIST);
     }
 }
